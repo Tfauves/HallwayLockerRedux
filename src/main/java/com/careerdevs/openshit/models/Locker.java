@@ -1,15 +1,20 @@
 package com.careerdevs.openshit.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Locker {
     @Id
     @GeneratedValue
     private Long id;
+
+    @OneToMany(mappedBy = "content", fetch = FetchType.LAZY)
+    @JsonIncludeProperties("student")
+    private Set<Content> content;
 
 
 }
